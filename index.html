@@ -28,13 +28,18 @@
         .hero-title span { color: #f43f5e; }
         .hero-desc { color: #9ca3af; font-size: 14px; line-height: 1.6; margin: 0 0 20px 0; }
 
-        /* 3. 动态地图点亮卡片区 (德国、法国、英国) */
+        /* 3. 动态地图点亮卡片区 (多节点 + 雅加达放大) */
         .map-card { background: #150c1c; border: 1px solid #271a33; border-radius: 16px; padding: 15px; margin-bottom: 25px; position: relative; overflow: hidden; text-align: center; box-shadow: 0 8px 24px rgba(0,0,0,0.4); }
-        .map-canvas-container { position: relative; width: 100%; height: 160px; display: flex; justify-content: center; align-items: center; }
+        .map-card-title { font-size: 13px; color: #f3f4f6; margin-bottom: 2px; font-weight: 700; letter-spacing: 1px; }
+        .map-card-subtitle { font-size: 10px; color: #888; margin-bottom: 8px; }
+        .map-canvas-container { position: relative; width: 100%; height: 180px; display: flex; justify-content: center; align-items: center; }
         canvas { width: 100%; height: 100%; display: block; }
-        .map-footer-tags { display: flex; justify-content: center; gap: 12px; margin-top: 10px; font-size: 11px; color: #aaa; flex-wrap: wrap; }
-        .map-tag-item { display: flex; align-items: center; gap: 4px; background: #1f1429; padding: 3px 8px; border-radius: 6px; border: 1px solid #322142; }
-        .dot-indicator { width: 6px; height: 6px; background: #f43f5e; border-radius: 50%; box-shadow: 0 0 8px #f43f5e; }
+        
+        .map-footer-tags { display: flex; justify-content: center; gap: 6px; margin-top: 10px; font-size: 10px; color: #aaa; flex-wrap: wrap; }
+        .map-tag-item { display: flex; align-items: center; gap: 4px; background: #1f1429; padding: 3px 7px; border-radius: 6px; border: 1px solid #322142; }
+        .dot-indicator { width: 5px; height: 5px; background: #f43f5e; border-radius: 50%; box-shadow: 0 0 6px #f43f5e; }
+        .dot-indicator.main { width: 7px; height: 7px; background: #fbbf24; box-shadow: 0 0 8px #fbbf24; }
+        .map-tag-item.main-tag { border-color: rgba(251, 191, 36, 0.4); background: #231b14; color: #fde68a; }
 
         /* 4. 数据统计栏 */
         .stats-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-bottom: 30px; }
@@ -98,16 +103,21 @@
         <p class="hero-desc">MUKE adalah agensi live streaming TikTok di Jakarta. Kami cari orang yang mau serius — bukan cuma coba-coba. Lamaran online, gratis, tanpa biaya apa pun.</p>
     </div>
 
-    <!-- 欧洲动态点亮地图卡片 (德国、法国、英国) -->
+    <!-- 全球足迹动态点亮地图卡片 (印尼雅加达放大 + 欧英中东北欧等节点) -->
     <div class="map-card">
-        <div style="font-size: 12px; color: #888; margin-bottom: 5px; font-weight: 600; letter-spacing: 0.5px;">JARINGAN GLOBAL & KONEKSI EROPA</div>
+        <div class="map-card-title">MUKE足迹遍布</div>
+        <div class="map-card-subtitle">Global Network & Strategic Hubs</div>
         <div class="map-canvas-container">
-            <canvas id="europeMapCanvas"></canvas>
+            <canvas id="globalMapCanvas"></canvas>
         </div>
         <div class="map-footer-tags">
-            <div class="map-tag-item"><div class="dot-indicator"></div> London (UK)</div>
-            <div class="map-tag-item"><div class="dot-indicator"></div> Paris (Prancis)</div>
-            <div class="map-tag-item"><div class="dot-indicator"></div> Berlin (Jerman)</div>
+            <div class="map-tag-item main-tag"><div class="dot-indicator main"></div> 📍 Jakarta (Pusat)</div>
+            <div class="map-tag-item"><div class="dot-indicator"></div> Inggris</div>
+            <div class="map-tag-item"><div class="dot-indicator"></div> Jerman</div>
+            <div class="map-tag-item"><div class="dot-indicator"></div> Prancis</div>
+            <div class="map-tag-item"><div class="dot-indicator"></div> Nordik</div>
+            <div class="map-tag-item"><div class="dot-indicator"></div> Balkan</div>
+            <div class="map-tag-item"><div class="dot-indicator"></div> Timur Tengah</div>
         </div>
     </div>
 
@@ -310,7 +320,7 @@
             </div>
             <div class="form-group">
                 <label>Nomor WhatsApp</label>
-                <input type="tel" class="input-box" required placeholder="cnth: 08123456789">
+                <input type="tel" class="input-box" required placeholder="contoh: 08123456789">
                 <div class="input-hint">Harus nomor milikmu sendiri — jadi satu-satunya identitas kamu setelah masuk kerja.</div>
             </div>
             <button type="submit" class="submit-btn">Lamar posisi ini</button>
@@ -336,8 +346,8 @@
         alert("Pendaftaran untuk posisi [" + jobTitle + "] berhasil dikirim!\nDirekomendasikan oleh: " + currentAgent + "\nTerima kasih, kami akan segera menghubungi Anda.");
     }
 
-    // 3. 欧洲动态点亮地图 Canvas 动效脚本 (英国、法国、德国)
-    const canvas = document.getElementById('europeMapCanvas');
+    // 3. 全球多节点动态地图 Canvas 脚本 (雅加达放大核心 + 欧洲/英国/中东/北欧/巴尔干)
+    const canvas = document.getElementById('globalMapCanvas');
     const ctx = canvas.getContext('2d');
 
     function resizeCanvas() {
@@ -347,68 +357,112 @@
     window.addEventListener('resize', resizeCanvas);
     resizeCanvas();
 
-    // 城市坐标定义 (基于画布比例)
-    const cities = [
-        { name: 'London', x: 0.32, y: 0.45, country: 'UK' },
-        { name: 'Paris', x: 0.44, y: 0.62, country: 'Prancis' },
-        { name: 'Berlin', x: 0.68, y: 0.42, country: 'Jerman' }
+    // 坐标位置定义 (比例化分布)
+    const locations = [
+        { name: 'Jakarta', x: 0.78, y: 0.75, isMain: true },   // 印尼雅加达 (核心放大)
+        { name: 'Inggris', x: 0.28, y: 0.32, isMain: false },   // 英国
+        { name: 'Prancis', x: 0.36, y: 0.42, isMain: false },   // 法国
+        { name: 'Jerman', x: 0.44, y: 0.38, isMain: false },    // 德国
+        { name: 'Nordik', x: 0.46, y: 0.20, isMain: false },    // 北欧
+        { name: 'Balkan', x: 0.52, y: 0.48, isMain: false },    // 巴尔干
+        { name: 'Timur Tengah', x: 0.64, y: 0.58, isMain: false } // 中东
     ];
 
     let pulseRadius = 0;
+    let mainPulseRadius = 0;
 
-    function drawMap() {
+    function drawGlobalMap() {
         ctx.clearRect(0, 0, canvas.width, canvas.height);
 
         const w = canvas.width;
         const h = canvas.height;
 
-        // 绘制虚构连线背景 (英国 -> 法国 -> 德国)
-        ctx.strokeStyle = 'rgba(241, 65, 104, 0.2)';
-        ctx.lineWidth = 1.5;
-        ctx.setLineDash([4, 4]);
+        const jakarta = locations[0];
+        const jx = jakarta.x * w;
+        const jy = jakarta.y * h;
 
-        ctx.beginPath();
-        ctx.moveTo(cities[0].x * w, cities[0].y * h);
-        ctx.lineTo(cities[1].x * w, cities[1].y * h);
-        ctx.lineTo(cities[2].x * w, cities[2].y * h);
-        ctx.stroke();
-        ctx.setLineDash([]); // 重置虚线
+        // 绘制以雅加达为中心向全球各节点发散的科技感连线
+        locations.forEach((loc, index) => {
+            if (index === 0) return;
+            const lx = loc.x * w;
+            const ly = loc.y * h;
 
-        // 脉冲光圈扩散动画
-        pulseRadius = (pulseRadius + 0.4) % 25;
+            ctx.strokeStyle = 'rgba(244, 63, 94, 0.18)';
+            ctx.lineWidth = 1;
+            ctx.setLineDash([3, 3]);
 
-        // 绘制城市节点
-        cities.forEach(city => {
-            const cx = city.x * w;
-            const cy = city.y * h;
+            ctx.beginPath();
+            ctx.moveTo(jx, jy);
+            ctx.lineTo(lx, ly);
+            ctx.stroke();
+            ctx.setLineDash([]);
+        });
+
+        // 动画递增
+        pulseRadius = (pulseRadius + 0.35) % 20;
+        mainPulseRadius = (mainPulseRadius + 0.6) % 35;
+
+        // 绘制普通节点 (英、法、德、北欧、巴尔干、中东)
+        locations.forEach((loc, index) => {
+            if (index === 0) return; // 雅加达单独处理
+            const cx = loc.x * w;
+            const cy = loc.y * h;
 
             // 扩散波纹
             ctx.beginPath();
             ctx.arc(cx, cy, pulseRadius, 0, Math.PI * 2);
-            ctx.strokeStyle = `rgba(244, 63, 94, ${1 - pulseRadius / 25})`;
-            ctx.lineWidth = 1;
+            ctx.strokeStyle = `rgba(244, 63, 94, ${1 - pulseRadius / 20})`;
+            ctx.lineWidth = 0.8;
             ctx.stroke();
 
-            // 中心核心发光点
+            // 中心点
             ctx.beginPath();
-            ctx.arc(cx, cy, 4, 0, Math.PI * 2);
+            ctx.arc(cx, cy, 3, 0, Math.PI * 2);
             ctx.fillStyle = '#f43f5e';
-            ctx.shadowColor = '#f43f5e';
-            ctx.shadowBlur = 10;
             ctx.fill();
-            ctx.shadowBlur = 0; // 重置阴影
 
             // 文字标注
-            ctx.fillStyle = '#d1d5db';
-            ctx.font = '11px sans-serif';
+            ctx.fillStyle = '#9ca3af';
+            ctx.font = '9px sans-serif';
             ctx.textAlign = 'center';
-            ctx.fillText(city.name, cx, cy - 12);
+            ctx.fillText(loc.name, cx, cy - 8);
         });
 
-        requestAnimationFrame(drawMap);
+        // 重点突出：印尼雅加达 (放大双重波纹 + 金色高亮 + 醒目标注)
+        // 第一道波纹
+        ctx.beginPath();
+        ctx.arc(jx, jy, mainPulseRadius, 0, Math.PI * 2);
+        ctx.strokeStyle = `rgba(251, 191, 36, ${1 - mainPulseRadius / 35})`;
+        ctx.lineWidth = 1.5;
+        ctx.stroke();
+
+        // 第二道波纹 (错峰)
+        let secondRadius = (mainPulseRadius + 15) % 35;
+        ctx.beginPath();
+        ctx.arc(jx, jy, secondRadius, 0, Math.PI * 2);
+        ctx.strokeStyle = `rgba(251, 191, 36, ${1 - secondRadius / 35})`;
+        ctx.lineWidth = 1;
+        ctx.stroke();
+
+        // 雅加达中心实体大圆
+        ctx.beginPath();
+        ctx.arc(jx, jy, 6, 0, Math.PI * 2);
+        ctx.fillStyle = '#fbbf24';
+        ctx.shadowColor = '#fbbf24';
+        ctx.shadowBlur = 15;
+        ctx.fill();
+        ctx.shadowBlur = 0; // 重置
+
+        // 雅加达文字
+        ctx.fillStyle = '#fde68a';
+        ctx.font = 'bold 11px sans-serif';
+        ctx.textAlign = 'center';
+        ctx.fillText('Jakarta (Pusat)', jx, jy - 14);
+
+        requestAnimationFrame(drawGlobalMap);
     }
 
-    drawMap();
+    drawGlobalMap();
 </script>
 
 </body>
