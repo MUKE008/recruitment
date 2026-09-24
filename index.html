@@ -20,11 +20,11 @@
         .lang-btn { background: #1a1023; border: 1px solid #322142; color: #aaa; width: 28px; height: 28px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 11px; font-weight: bold; cursor: pointer; }
         .lang-btn.active { background: #e11d48; color: white; border-color: #e11d48; }
 
-        /* 2. 顶栏大标题与简介 (适配多彩渐变换行) */
+        /* 2. 顶栏大标题与简介 (字号放大两倍视觉) */
         .hero-section { margin-bottom: 25px; }
         .status-badge { display: inline-flex; align-items: center; gap: 6px; background: #19101f; border: 1px solid #2e1d3a; padding: 4px 10px; border-radius: 12px; font-size: 11px; color: #aaa; margin-bottom: 15px; }
         .status-dot { width: 6px; height: 6px; background: #10b981; border-radius: 50%; box-shadow: 0 0 6px #10b981; }
-        .hero-title { font-size: 32px; font-weight: 800; line-height: 1.2; margin: 0 0 15px 0; letter-spacing: -0.5px; color: #fff; }
+        .hero-title { font-size: 44px; font-weight: 800; line-height: 1.15; margin: 0 0 15px 0; letter-spacing: -1px; color: #fff; }
         
         /* 渐变艺术字样式 */
         .hero-title .gradient-text {
@@ -32,7 +32,8 @@
             background: linear-gradient(135deg, #ff2e88 0%, #b066ff 50%, #22a7f0 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            filter: drop-shadow(0 0 16px rgba(176, 102, 255, 0.3));
+            filter: drop-shadow(0 0 16px rgba(176, 102, 255, 0.35));
+            margin-top: 4px;
         }
 
         .hero-desc { color: #9ca3af; font-size: 14px; line-height: 1.6; margin: 0 0 20px 0; }
@@ -135,7 +136,7 @@
         </div>
     </div>
 
-    <!-- 顶栏大标题与介绍 (修改为图二炫彩分行样式) -->
+    <!-- 顶栏大标题与介绍 (字号放大两倍炫彩样式) -->
     <div class="hero-section">
         <div class="status-badge">
             <div class="status-dot"></div>
