@@ -28,7 +28,7 @@
         .hero-title span { color: #f43f5e; }
         .hero-desc { color: #9ca3af; font-size: 14px; line-height: 1.6; margin: 0 0 20px 0; }
 
-        /* 3. 动态地图点亮卡片区 (多节点 + 雅加达放大) */
+        /* 3. 全球足迹动态点亮地图卡片 */
         .map-card { background: #150c1c; border: 1px solid #271a33; border-radius: 16px; padding: 15px; margin-bottom: 25px; position: relative; overflow: hidden; text-align: center; box-shadow: 0 8px 24px rgba(0,0,0,0.4); }
         .map-card-title { font-size: 13px; color: #f3f4f6; margin-bottom: 2px; font-weight: 700; letter-spacing: 1px; }
         .map-card-subtitle { font-size: 10px; color: #888; margin-bottom: 8px; }
@@ -47,34 +47,61 @@
         .stat-number { font-size: 18px; font-weight: bold; color: #fff; margin-bottom: 4px; }
         .stat-label { font-size: 11px; color: #888; }
 
-        /* 5. 岗位卡片区 */
+        /* 5. 岗位卡片区 (默认折叠表单) */
         .section-subtitle { font-size: 11px; color: #777; letter-spacing: 1px; margin-bottom: 15px; font-weight: bold; }
-        .job-card { background: #150c1c; border: 1px solid #271a33; border-radius: 16px; padding: 25px; margin-bottom: 25px; position: relative; overflow: hidden; box-shadow: 0 8px 24px rgba(0,0,0,0.4); }
+        .job-card { background: #150c1c; border: 1px solid #271a33; border-radius: 16px; padding: 22px; margin-bottom: 20px; position: relative; overflow: hidden; box-shadow: 0 8px 24px rgba(0,0,0,0.4); transition: 0.3s; }
         
         /* 卡片右下角水印 */
         .job-card::after { content: ""; position: absolute; right: -10px; bottom: -15px; width: 110px; height: 110px; background-image: url('logo.png'); background-repeat: no-repeat; background-size: contain; opacity: 0.08; pointer-events: none; }
 
-        .job-header-row { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 8px; }
-        .job-title { font-size: 20px; font-weight: bold; color: #fff; }
-        .job-title-sub { font-size: 14px; color: #888; font-weight: normal; margin-left: 6px; }
+        .job-header-row { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 8px; cursor: pointer; }
+        .job-title-area { flex: 1; }
+        .job-title { font-size: 18px; font-weight: bold; color: #fff; }
+        .job-title-sub { font-size: 13px; color: #888; font-weight: normal; margin-left: 6px; }
         .badge-urgent { background: #d97706; color: #fff; font-size: 10px; padding: 2px 6px; border-radius: 4px; margin-left: 6px; vertical-align: middle; }
         
-        .avatar-group { display: flex; align-items: center; gap: 4px; }
-        .mini-avatar { width: 22px; height: 22px; border-radius: 50%; background: #333; border: 1px solid #444; }
-        .next-btn-badge { background: #261733; border: 1px solid #3b234f; color: #fff; font-size: 11px; padding: 3px 8px; border-radius: 12px; font-weight: bold; }
+        .job-card-right { display: flex; align-items: center; gap: 8px; }
+        .next-btn-badge { background: #261733; border: 1px solid #3b234f; color: #fff; font-size: 11px; padding: 4px 10px; border-radius: 12px; font-weight: bold; display: flex; align-items: center; gap: 4px; cursor: pointer; }
+        .next-btn-badge:hover { background: #322144; }
 
-        .job-desc { color: #9ca3af; font-size: 13px; margin-bottom: 15px; line-height: 1.5; }
-        .tags { display: flex; gap: 6px; margin-bottom: 20px; flex-wrap: wrap; }
-        .tag { background: #22152d; color: #d1d5db; padding: 4px 10px; border-radius: 6px; font-size: 11px; border: 1px solid #322142; }
+        .job-desc { color: #9ca3af; font-size: 13px; margin-bottom: 12px; line-height: 1.5; }
+        .tags { display: flex; gap: 6px; margin-bottom: 0px; flex-wrap: wrap; }
+        .tag { background: #22152d; color: #d1d5db; padding: 3px 8px; border-radius: 6px; font-size: 11px; border: 1px solid #322142; }
         
+        /* 折叠的表单区域 */
+        .job-form-collapse { max-height: 0; overflow: hidden; transition: max-height 0.4s ease-out, margin-top 0.4s ease-out; margin-top: 0; border-top: 0px solid #271a33; }
+        .job-card.expanded .job-form-collapse { max-height: 500px; margin-top: 15px; padding-top: 15px; border-top: 1px solid #271a33; }
+
         .form-group { margin-bottom: 15px; position: relative; z-index: 1; }
         label { display: block; font-size: 13px; color: #ccc; margin-bottom: 6px; font-weight: 500; }
         .input-box { width: 100%; background: #1c1126; border: 1px solid #332242; border-radius: 8px; padding: 12px; color: white; font-size: 14px; box-sizing: border-box; outline: none; transition: 0.2s; }
         .input-box:focus { border-color: #e11d48; box-shadow: 0 0 0 2px rgba(225,29,72,0.2); }
         .input-hint { font-size: 11px; color: #777; margin-top: 4px; }
         
-        .submit-btn { width: 100%; background: linear-gradient(135deg, #f43f5e, #e11d48); color: white; border: none; border-radius: 10px; padding: 14px; font-size: 15px; font-weight: bold; cursor: pointer; margin-top: 10px; transition: 0.2s; box-shadow: 0 4px 12px rgba(225,29,72,0.3); position: relative; z-index: 1; }
+        .submit-btn { width: 100%; background: linear-gradient(135deg, #f43f5e, #e11d48); color: white; border: none; border-radius: 10px; padding: 14px; font-size: 15px; font-weight: bold; cursor: pointer; margin-top: 5px; transition: 0.2s; box-shadow: 0 4px 12px rgba(225,29,72,0.3); position: relative; z-index: 1; }
         .submit-btn:hover { opacity: 0.9; transform: translateY(-1px); }
+
+        /* 6. 图片复刻区：PROSESNYA 流程区块 */
+        .process-section { background: #150c1c; border: 1px solid #271a33; border-radius: 16px; padding: 20px; margin-top: 30px; margin-bottom: 30px; box-shadow: 0 8px 24px rgba(0,0,0,0.4); }
+        .process-title-header { font-size: 11px; color: #777; letter-spacing: 1px; font-weight: bold; margin-bottom: 15px; }
+        
+        .process-step { display: flex; gap: 12px; margin-bottom: 18px; align-items: flex-start; }
+        .process-step:last-child { margin-bottom: 0; }
+        .step-num { width: 22px; height: 22px; background: #2b1836; border: 1px solid #48295c; color: #f43f5e; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 11px; font-weight: bold; flex-shrink: 0; margin-top: 2px; }
+        .step-content { flex: 1; }
+        .step-head-row { display: flex; align-items: center; gap: 8px; margin-bottom: 3px; flex-wrap: wrap; }
+        .step-name { font-size: 14px; font-weight: bold; color: #fff; }
+        .step-badge { background: #e11d48; color: #fff; font-size: 9px; padding: 1px 6px; border-radius: 4px; font-weight: bold; }
+        .step-desc { font-size: 12px; color: #9ca3af; line-height: 1.4; }
+
+        /* 底部公司信息与社交卡片 */
+        .brand-footer-box { background: #110816; border: 1px solid #22152e; border-radius: 14px; padding: 16px; margin-top: 20px; text-align: center; }
+        .brand-footer-name { font-size: 14px; font-weight: bold; color: #fff; margin-bottom: 8px; letter-spacing: 0.5px; }
+        .footer-info-row { display: flex; justify-content: center; gap: 15px; font-size: 11px; color: #888; flex-wrap: wrap; margin-bottom: 10px; }
+        .footer-info-item { display: flex; align-items: center; gap: 4px; }
+        .footer-social-row { display: flex; justify-content: center; gap: 12px; font-size: 11px; color: #aaa; border-top: 1px solid #1c1025; padding-top: 10px; flex-wrap: wrap; }
+        
+        .global-footer-note { text-align: center; font-size: 11px; color: #666; margin-top: 20px; margin-bottom: 10px; }
     </style>
 </head>
 <body>
@@ -103,9 +130,9 @@
         <p class="hero-desc">MUKE adalah agensi live streaming TikTok di Jakarta. Kami cari orang yang mau serius — bukan cuma coba-coba. Lamaran online, gratis, tanpa biaya apa pun.</p>
     </div>
 
-    <!-- 全球足迹动态点亮地图卡片 (印尼雅加达放大 + 欧英中东北欧等节点) -->
+    <!-- 全球足迹动态点亮地图卡片 (印尼语: Jejak Global MUKE) -->
     <div class="map-card">
-        <div class="map-card-title">MUKE足迹遍布</div>
+        <div class="map-card-title">Jejak Global MUKE</div>
         <div class="map-card-subtitle">Global Network & Strategic Hubs</div>
         <div class="map-canvas-container">
             <canvas id="globalMapCanvas"></canvas>
@@ -137,195 +164,296 @@
         </div>
     </div>
 
-    <div class="section-subtitle">LOWONGAN</div>
+    <div class="section-subtitle">LOWONGAN PEKERJAAN</div>
+
+    <!-- 岗位列表区域 (点击卡片头部展开/折叠表单) -->
 
     <!-- 1. Host Live -->
-    <div class="job-card">
-        <div class="job-header-row">
-            <div class="job-title">Host Live <span class="job-title-sub">主播</span></div>
-            <div class="avatar-group">
-                <div class="mini-avatar" style="background: #e11d48;"></div>
-                <div class="mini-avatar" style="background: #3b82f6;"></div>
-                <div class="mini-avatar" style="background: #10b981;"></div>
-                <div class="next-btn-badge">NEXT</div>
+    <div class="job-card" id="job-1">
+        <div class="job-header-row" onclick="toggleJob('job-1')">
+            <div class="job-title-area">
+                <div class="job-title">Host Live <span class="job-title-sub">主播</span></div>
+                <div class="job-desc" style="margin-top: 6px; margin-bottom: 8px;">Siaran langsung sesuai jadwal, memenuhi target jam siaran dan omzet, menjaga interaksi serta retensi penonton.</div>
+                <div class="tags">
+                    <span class="tag">butuh 30 orang</span>
+                    <span class="tag">S 主播艺人轨</span>
+                    <span class="tag">Pemula → Emas · 4 tingkat</span>
+                </div>
+            </div>
+            <div class="job-card-right">
+                <div class="next-btn-badge" id="btn-text-job-1">Lamar ▼</div>
             </div>
         </div>
-        <div class="job-desc">Siaran langsung sesuai jadwal, memenuhi target jam siaran dan omzet, menjaga interaksi serta retensi penonton.</div>
-        <div class="tags">
-            <span class="tag">butuh 30 orang</span>
-            <span class="tag">S 主播艺人轨</span>
-            <span class="tag">Pemula → Emas · 4 tingkat</span>
+        
+        <!-- 折叠表单 -->
+        <div class="job-form-collapse">
+            <form onsubmit="handleSubmit(event, 'Host Live')">
+                <div class="form-group">
+                    <label>Nama lengkap</label>
+                    <input type="text" class="input-box" placeholder="contoh: Siti Rahayu">
+                    <div class="input-hint">Tulis persis seperti di KTP. Dipakai untuk kontrak kerja.</div>
+                </div>
+                <div class="form-group">
+                    <label>Nomor WhatsApp</label>
+                    <input type="tel" class="input-box" placeholder="contoh: 08123456789">
+                    <div class="input-hint">Harus nomor milikmu sendiri — jadi satu-satunya identitas kamu setelah masuk kerja.</div>
+                </div>
+                <button type="submit" class="submit-btn">Kirim Lamaran</button>
+            </form>
         </div>
-        <form onsubmit="handleSubmit(event, 'Host Live')">
-            <div class="form-group">
-                <label>Nama lengkap</label>
-                <input type="text" class="input-box" required placeholder="contoh: Siti Rahayu">
-                <div class="input-hint">Tulis persis seperti di KTP. Dipakai untuk kontrak kerja.</div>
-            </div>
-            <div class="form-group">
-                <label>Nomor WhatsApp</label>
-                <input type="tel" class="input-box" required placeholder="contoh: 08123456789">
-                <div class="input-hint">Harus nomor milikmu sendiri — jadi satu-satunya identitas kamu setelah masuk kerja.</div>
-            </div>
-            <button type="submit" class="submit-btn">Lamar posisi ini</button>
-        </form>
     </div>
 
     <!-- 2. Penerjemah -->
-    <div class="job-card">
-        <div class="job-header-row">
-            <div class="job-title">Penerjemah <span class="job-title-sub">翻译</span> <span class="badge-urgent">URGENT</span></div>
-            <div class="next-btn-badge">NEXT</div>
-        </div>
-        <div class="job-desc">Penerjemahan Mandarin/Indonesia/Inggris, subtitle siaran, dan dukungan komunikasi lintas bahasa.</div>
-        <div class="tags">
-            <span class="tag">butuh 2 orang</span>
-            <span class="tag">P 专业技术轨</span>
-            <span class="tag">Asisten → Senior · 3 tingkat</span>
-        </div>
-        <form onsubmit="handleSubmit(event, 'Penerjemah')">
-            <div class="form-group">
-                <label>Nama lengkap</label>
-                <input type="text" class="input-box" required placeholder="contoh: Siti Rahayu">
-                <div class="input-hint">Tulis persis seperti di KTP. Dipakai untuk kontrak kerja.</div>
+    <div class="job-card" id="job-2">
+        <div class="job-header-row" onclick="toggleJob('job-2')">
+            <div class="job-title-area">
+                <div class="job-title">Penerjemah <span class="job-title-sub">翻译</span> <span class="badge-urgent">URGENT</span></div>
+                <div class="job-desc" style="margin-top: 6px; margin-bottom: 8px;">Penerjemahan Mandarin/Indonesia/Inggris, subtitle siaran, dan dukungan komunikasi lintas bahasa.</div>
+                <div class="tags">
+                    <span class="tag">butuh 2 orang</span>
+                    <span class="tag">P 专业技术轨</span>
+                    <span class="tag">Asisten → Senior · 3 tingkat</span>
+                </div>
             </div>
-            <div class="form-group">
-                <label>Nomor WhatsApp</label>
-                <input type="tel" class="input-box" required placeholder="contoh: 08123456789">
-                <div class="input-hint">Harus nomor milikmu sendiri — jadi satu-satunya identitas kamu setelah masuk kerja.</div>
+            <div class="job-card-right">
+                <div class="next-btn-badge" id="btn-text-job-2">Lamar ▼</div>
             </div>
-            <button type="submit" class="submit-btn">Lamar posisi ini</button>
-        </form>
+        </div>
+        
+        <div class="job-form-collapse">
+            <form onsubmit="handleSubmit(event, 'Penerjemah')">
+                <div class="form-group">
+                    <label>Nama lengkap</label>
+                    <input type="text" class="input-box" placeholder="contoh: Siti Rahayu">
+                    <div class="input-hint">Tulis persis seperti di KTP. Dipakai untuk kontrak kerja.</div>
+                </div>
+                <div class="form-group">
+                    <label>Nomor WhatsApp</label>
+                    <input type="tel" class="input-box" placeholder="contoh: 08123456789">
+                    <div class="input-hint">Harus nomor milikmu sendiri — jadi satu-satunya identitas kamu setelah masuk kerja.</div>
+                </div>
+                <button type="submit" class="submit-btn">Kirim Lamaran</button>
+            </form>
+        </div>
     </div>
 
     <!-- 3. Pelatih Tari -->
-    <div class="job-card">
-        <div class="job-header-row">
-            <div class="job-title">Pelatih Tari <span class="job-title-sub">舞蹈培训师</span></div>
-            <div class="next-btn-badge">NEXT</div>
-        </div>
-        <div class="job-desc">Merancang dan mengajar kelas tari untuk host pemula, serta melakukan penilaian berjenjang.</div>
-        <div class="tags">
-            <span class="tag">butuh 5 orang</span>
-            <span class="tag">Spesialis → Pakar · 3 tingkat</span>
-        </div>
-        <form onsubmit="handleSubmit(event, 'Pelatih Tari')">
-            <div class="form-group">
-                <label>Nama lengkap</label>
-                <input type="text" class="input-box" required placeholder="contoh: Siti Rahayu">
-                <div class="input-hint">Tulis persis seperti di KTP. Dipakai untuk kontrak kerja.</div>
+    <div class="job-card" id="job-3">
+        <div class="job-header-row" onclick="toggleJob('job-3')">
+            <div class="job-title-area">
+                <div class="job-title">Pelatih Tari <span class="job-title-sub">舞蹈培训师</span></div>
+                <div class="job-desc" style="margin-top: 6px; margin-bottom: 8px;">Merancang dan mengajar kelas tari untuk host pemula, serta melakukan penilaian berjenjang.</div>
+                <div class="tags">
+                    <span class="tag">butuh 5 orang</span>
+                    <span class="tag">Spesialis → Pakar · 3 tingkat</span>
+                </div>
             </div>
-            <div class="form-group">
-                <label>Nomor WhatsApp</label>
-                <input type="tel" class="input-box" required placeholder="contoh: 08123456789">
-                <div class="input-hint">Harus nomor milikmu sendiri — jadi satu-satunya identitas kamu setelah masuk kerja.</div>
+            <div class="job-card-right">
+                <div class="next-btn-badge" id="btn-text-job-3">Lamar ▼</div>
             </div>
-            <button type="submit" class="submit-btn">Lamar posisi ini</button>
-        </form>
+        </div>
+        
+        <div class="job-form-collapse">
+            <form onsubmit="handleSubmit(event, 'Pelatih Tari')">
+                <div class="form-group">
+                    <label>Nama lengkap</label>
+                    <input type="text" class="input-box" placeholder="contoh: Siti Rahayu">
+                    <div class="input-hint">Tulis persis seperti di KTP. Dipakai untuk kontrak kerja.</div>
+                </div>
+                <div class="form-group">
+                    <label>Nomor WhatsApp</label>
+                    <input type="tel" class="input-box" placeholder="contoh: 08123456789">
+                    <div class="input-hint">Harus nomor milikmu sendiri — jadi satu-satunya identitas kamu setelah masuk kerja.</div>
+                </div>
+                <button type="submit" class="submit-btn">Kirim Lamaran</button>
+            </form>
+        </div>
     </div>
 
     <!-- 4. Penata Rias & Rambut -->
-    <div class="job-card">
-        <div class="job-header-row">
-            <div class="job-title">Penata Rias & Rambut <span class="job-title-sub">妆造</span></div>
-            <div class="next-btn-badge">NEXT</div>
-        </div>
-        <div class="job-desc">Merancang tata rias dan gaya penampilan host, retouch selama siaran, serta mengelola stok kosmetik.</div>
-        <div class="tags">
-            <span class="tag">butuh 6 orang</span>
-            <span class="tag">Asisten → Pakar · 4 tingkat</span>
-        </div>
-        <form onsubmit="handleSubmit(event, 'Penata Rias & Rambut')">
-            <div class="form-group">
-                <label>Nama lengkap</label>
-                <input type="text" class="input-box" required placeholder="contoh: Siti Rahayu">
-                <div class="input-hint">Tulis persis seperti di KTP. Dipakai untuk kontrak kerja.</div>
+    <div class="job-card" id="job-4">
+        <div class="job-header-row" onclick="toggleJob('job-4')">
+            <div class="job-title-area">
+                <div class="job-title">Penata Rias & Rambut <span class="job-title-sub">妆造</span></div>
+                <div class="job-desc" style="margin-top: 6px; margin-bottom: 8px;">Merancang tata rias dan gaya penampilan host, retouch selama siaran, serta mengelola stok kosmetik.</div>
+                <div class="tags">
+                    <span class="tag">butuh 6 orang</span>
+                    <span class="tag">Asisten → Pakar · 4 tingkat</span>
+                </div>
             </div>
-            <div class="form-group">
-                <label>Nomor WhatsApp</label>
-                <input type="tel" class="input-box" required placeholder="contoh: 08123456789">
-                <div class="input-hint">Harus nomor milikmu sendiri — jadi satu-satunya identitas kamu setelah masuk kerja.</div>
+            <div class="job-card-right">
+                <div class="next-btn-badge" id="btn-text-job-4">Lamar ▼</div>
             </div>
-            <button type="submit" class="submit-btn">Lamar posisi ini</button>
-        </form>
+        </div>
+        
+        <div class="job-form-collapse">
+            <form onsubmit="handleSubmit(event, 'Penata Rias & Rambut')">
+                <div class="form-group">
+                    <label>Nama lengkap</label>
+                    <input type="text" class="input-box" placeholder="contoh: Siti Rahayu">
+                    <div class="input-hint">Tulis persis seperti di KTP. Dipakai untuk kontrak kerja.</div>
+                </div>
+                <div class="form-group">
+                    <label>Nomor WhatsApp</label>
+                    <input type="tel" class="input-box" placeholder="contoh: 08123456789">
+                    <div class="input-hint">Harus nomor milikmu sendiri — jadi satu-satunya identitas kamu setelah masuk kerja.</div>
+                </div>
+                <button type="submit" class="submit-btn">Kirim Lamaran</button>
+            </form>
+        </div>
     </div>
 
     <!-- 5. Operasional Live -->
-    <div class="job-card">
-        <div class="job-header-row">
-            <div class="job-title">Operasional Live <span class="job-title-sub">团播运营</span></div>
-            <div class="next-btn-badge">NEXT</div>
-        </div>
-        <div class="job-desc">Menyusun jadwal konten studio, evaluasi data, memantau kondisi host, serta merencanakan dan menjalankan event.</div>
-        <div class="tags">
-            <span class="tag">butuh 2 orang</span>
-        </div>
-        <form onsubmit="handleSubmit(event, 'Operasional Live')">
-            <div class="form-group">
-                <label>Nama lengkap</label>
-                <input type="text" class="input-box" required placeholder="contoh: Siti Rahayu">
-                <div class="input-hint">Tulis persis seperti di KTP. Dipakai untuk kontrak kerja.</div>
+    <div class="job-card" id="job-5">
+        <div class="job-header-row" onclick="toggleJob('job-5')">
+            <div class="job-title-area">
+                <div class="job-title">Operasional Live <span class="job-title-sub">团播运营</span></div>
+                <div class="job-desc" style="margin-top: 6px; margin-bottom: 8px;">Menyusun jadwal konten studio, evaluasi data, memantau kondisi host, serta merencanakan dan menjalankan event.</div>
+                <div class="tags">
+                    <span class="tag">butuh 2 orang</span>
+                </div>
             </div>
-            <div class="form-group">
-                <label>Nomor WhatsApp</label>
-                <input type="tel" class="input-box" required placeholder="contoh: 08123456789">
-                <div class="input-hint">Harus nomor milikmu sendiri — jadi satu-satunya identitas kamu setelah masuk kerja.</div>
+            <div class="job-card-right">
+                <div class="next-btn-badge" id="btn-text-job-5">Lamar ▼</div>
             </div>
-            <button type="submit" class="submit-btn">Lamar posisi ini</button>
-        </form>
+        </div>
+        
+        <div class="job-form-collapse">
+            <form onsubmit="handleSubmit(event, 'Operasional Live')">
+                <div class="form-group">
+                    <label>Nama lengkap</label>
+                    <input type="text" class="input-box" placeholder="contoh: Siti Rahayu">
+                    <div class="input-hint">Tulis persis seperti di KTP. Dipakai untuk kontrak kerja.</div>
+                </div>
+                <div class="form-group">
+                    <label>Nomor WhatsApp</label>
+                    <input type="tel" class="input-box" placeholder="contoh: 08123456789">
+                    <div class="input-hint">Harus nomor milikmu sendiri — jadi satu-satunya identitas kamu setelah masuk kerja.</div>
+                </div>
+                <button type="submit" class="submit-btn">Kirim Lamaran</button>
+            </form>
+        </div>
     </div>
 
     <!-- 6. MC Live -->
-    <div class="job-card">
-        <div class="job-header-row">
-            <div class="job-title">MC Live <span class="job-title-sub">主持</span> <span class="badge-urgent">URGENT</span></div>
-            <div class="next-btn-badge">NEXT</div>
-        </div>
-        <div class="job-desc">Mengatur tempo acara, memandu interaksi dan suasana pemberian gift, serta menyambungkan antar segmen.</div>
-        <div class="tags">
-            <span class="tag">butuh 5 orang</span>
-            <span class="tag">Pemula → Emas · 4 tingkat</span>
-        </div>
-        <form onsubmit="handleSubmit(event, 'MC Live')">
-            <div class="form-group">
-                <label>Nama lengkap</label>
-                <input type="text" class="input-box" required placeholder="contoh: Siti Rahayu">
-                <div class="input-hint">Tulis persis seperti di KTP. Dipakai untuk kontrak kerja.</div>
+    <div class="job-card" id="job-6">
+        <div class="job-header-row" onclick="toggleJob('job-6')">
+            <div class="job-title-area">
+                <div class="job-title">MC Live <span class="job-title-sub">主持</span> <span class="badge-urgent">URGENT</span></div>
+                <div class="job-desc" style="margin-top: 6px; margin-bottom: 8px;">Mengatur tempo acara, memandu interaksi dan suasana pemberian gift, serta menyambungkan antar segmen.</div>
+                <div class="tags">
+                    <span class="tag">butuh 5 orang</span>
+                    <span class="tag">Pemula → Emas · 4 tingkat</span>
+                </div>
             </div>
-            <div class="form-group">
-                <label>Nomor WhatsApp</label>
-                <input type="tel" class="input-box" required placeholder="contoh: 08123456789">
-                <div class="input-hint">Harus nomor milikmu sendiri — jadi satu-satunya identitas kamu setelah masuk kerja.</div>
+            <div class="job-card-right">
+                <div class="next-btn-badge" id="btn-text-job-6">Lamar ▼</div>
             </div>
-            <button type="submit" class="submit-btn">Lamar posisi ini</button>
-        </form>
+        </div>
+        
+        <div class="job-form-collapse">
+            <form onsubmit="handleSubmit(event, 'MC Live')">
+                <div class="form-group">
+                    <label>Nama lengkap</label>
+                    <input type="text" class="input-box" placeholder="contoh: Siti Rahayu">
+                    <div class="input-hint">Tulis persis seperti di KTP. Dipakai untuk kontrak kerja.</div>
+                </div>
+                <div class="form-group">
+                    <label>Nomor WhatsApp</label>
+                    <input type="tel" class="input-box" placeholder="contoh: 08123456789">
+                    <div class="input-hint">Harus nomor milikmu sendiri — jadi satu-satunya identitas kamu setelah masuk kerja.</div>
+                </div>
+                <button type="submit" class="submit-btn">Kirim Lamaran</button>
+            </form>
+        </div>
     </div>
 
     <!-- 7. Kameramen & Switcher -->
-    <div class="job-card">
-        <div class="job-header-row">
-            <div class="job-title">Kameramen & Switcher <span class="job-title-sub">运镜</span></div>
-            <div class="next-btn-badge">NEXT</div>
-        </div>
-        <div class="job-desc">Mengatur posisi dan gerak kamera, menyusun komposisi gambar, serta berkoordinasi dengan operator untuk perpindahan shot.</div>
-        <div class="tags">
-            <span class="tag">butuh 2 orang</span>
-            <span class="tag">Asisten → Pakar · 4 tingkat</span>
-        </div>
-        <form onsubmit="handleSubmit(event, 'Kameramen & Switcher')">
-            <div class="form-group">
-                <label>Nama lengkap</label>
-                <input type="text" class="input-box" required placeholder="contoh: Siti Rahayu">
-                <div class="input-hint">Tulis persis seperti di KTP. Dipakai untuk kontrak kerja.</div>
+    <div class="job-card" id="job-7">
+        <div class="job-header-row" onclick="toggleJob('job-7')">
+            <div class="job-title-area">
+                <div class="job-title">Kameramen & Switcher <span class="job-title-sub">运镜</span></div>
+                <div class="job-desc" style="margin-top: 6px; margin-bottom: 8px;">Mengatur posisi dan gerak kamera, menyusun komposisi gambar, serta berkoordinasi dengan operator untuk perpindahan shot.</div>
+                <div class="tags">
+                    <span class="tag">butuh 2 orang</span>
+                    <span class="tag">Asisten → Pakar · 4 tingkat</span>
+                </div>
             </div>
-            <div class="form-group">
-                <label>Nomor WhatsApp</label>
-                <input type="tel" class="input-box" required placeholder="contoh: 08123456789">
-                <div class="input-hint">Harus nomor milikmu sendiri — jadi satu-satunya identitas kamu setelah masuk kerja.</div>
+            <div class="job-card-right">
+                <div class="next-btn-badge" id="btn-text-job-7">Lamar ▼</div>
             </div>
-            <button type="submit" class="submit-btn">Lamar posisi ini</button>
-        </form>
+        </div>
+        
+        <div class="job-form-collapse">
+            <form onsubmit="handleSubmit(event, 'Kameramen & Switcher')">
+                <div class="form-group">
+                    <label>Nama lengkap</label>
+                    <input type="text" class="input-box" placeholder="contoh: Siti Rahayu">
+                    <div class="input-hint">Tulis persis seperti di KTP. Dipakai untuk kontrak kerja.</div>
+                </div>
+                <div class="form-group">
+                    <label>Nomor WhatsApp</label>
+                    <input type="tel" class="input-box" placeholder="contoh: 08123456789">
+                    <div class="input-hint">Harus nomor milikmu sendiri — jadi satu-satunya identitas kamu setelah masuk kerja.</div>
+                </div>
+                <button type="submit" class="submit-btn">Kirim Lamaran</button>
+            </form>
+        </div>
     </div>
+
+    <!-- 复刻图片内容：PROSESNYA 区块 -->
+    <div class="process-section">
+        <div class="process-title-header">PROSESNYA</div>
+        
+        <div class="process-step">
+            <div class="step-num">1</div>
+            <div class="step-content">
+                <div class="step-head-row">
+                    <div class="step-name">Pendaftaran</div>
+                    <div class="step-badge">SEKARANG</div>
+                </div>
+                <div class="step-desc">Tiga form: lamaran → kuesioner → tes tulis.</div>
+            </div>
+        </div>
+
+        <div class="process-step">
+            <div class="step-num">2</div>
+            <div class="step-content">
+                <div class="step-head-row">
+                    <div class="step-name">Interview</div>
+                </div>
+                <div class="step-desc">Kami hubungi lewat WhatsApp untuk atur jadwal.</div>
+            </div>
+        </div>
+
+        <div class="process-step">
+            <div class="step-num">3</div>
+            <div class="step-content">
+                <div class="step-head-row">
+                    <div class="step-name">Mulai kerja</div>
+                </div>
+                <div class="step-desc">Bawa dokumen, langsung dibuatkan akun dan tim.</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 底部品牌信息与社交矩阵区块 -->
+    <div class="brand-footer-box">
+        <div class="brand-footer-name">MUKE STAR</div>
+        <div class="footer-info-row">
+            <div class="footer-info-item">📍 PT MUKE · E9 Landmark Pluit</div>
+            <div class="footer-info-item">🌐 Tentang MUKE</div>
+        </div>
+        <div class="footer-social-row">
+            <span>🎵 @muke.md</span>
+            <span>🎵 @mk.stars</span>
+        </div>
+    </div>
+
+    <div class="global-footer-note">
+        Data diperbarui 2026-09-24 &nbsp; | &nbsp; © PT MUKE · MUKE MEDIA Indonesia
+    </div>
+
 </div>
 
 <script>
@@ -339,14 +467,38 @@
         agentBox.innerHTML = `Pendaftaran Umum`;
     }
 
-    // 2. 提交表单交互逻辑
+    // 2. 点击卡片展开/折叠表单交互
+    function toggleJob(jobId) {
+        const card = document.getElementById(jobId);
+        const btn = document.getElementById('btn-text-' + jobId);
+        const isExpanded = card.classList.contains('expanded');
+        
+        // 关闭其他所有卡片 (手风琴效果，可选。如果希望多个同时展开，可注释掉下面这几行)
+        document.querySelectorAll('.job-card').forEach(c => {
+            if(c.id !== jobId) {
+                c.classList.remove('expanded');
+                const otherBtn = document.getElementById('btn-text-' + c.id);
+                if(otherBtn) otherBtn.innerHTML = 'Lamar ▼';
+            }
+        });
+
+        if (isExpanded) {
+            card.classList.remove('expanded');
+            btn.innerHTML = 'Lamar ▼';
+        } else {
+            card.classList.add('expanded');
+            btn.innerHTML = 'Tutup ▲';
+        }
+    }
+
+    // 3. 提交表单交互逻辑
     function handleSubmit(event, jobTitle) {
         event.preventDefault();
         const currentAgent = agentName ? agentName : "Umum (Tanpa Agen)";
         alert("Pendaftaran untuk posisi [" + jobTitle + "] berhasil dikirim!\nDirekomendasikan oleh: " + currentAgent + "\nTerima kasih, kami akan segera menghubungi Anda.");
     }
 
-    // 3. 全球多节点动态地图 Canvas 脚本 (雅加达放大核心 + 欧洲/英国/中东/北欧/巴尔干)
+    // 4. 全球多节点动态地图 Canvas 脚本 (雅加达放大核心 + 欧洲/英国/中东/北欧/巴尔干)
     const canvas = document.getElementById('globalMapCanvas');
     const ctx = canvas.getContext('2d');
 
@@ -357,15 +509,14 @@
     window.addEventListener('resize', resizeCanvas);
     resizeCanvas();
 
-    // 坐标位置定义 (比例化分布)
     const locations = [
-        { name: 'Jakarta', x: 0.78, y: 0.75, isMain: true },   // 印尼雅加达 (核心放大)
-        { name: 'Inggris', x: 0.28, y: 0.32, isMain: false },   // 英国
-        { name: 'Prancis', x: 0.36, y: 0.42, isMain: false },   // 法国
-        { name: 'Jerman', x: 0.44, y: 0.38, isMain: false },    // 德国
-        { name: 'Nordik', x: 0.46, y: 0.20, isMain: false },    // 北欧
-        { name: 'Balkan', x: 0.52, y: 0.48, isMain: false },    // 巴尔干
-        { name: 'Timur Tengah', x: 0.64, y: 0.58, isMain: false } // 中东
+        { name: 'Jakarta', x: 0.78, y: 0.75, isMain: true },
+        { name: 'Inggris', x: 0.28, y: 0.32, isMain: false },
+        { name: 'Prancis', x: 0.36, y: 0.42, isMain: false },
+        { name: 'Jerman', x: 0.44, y: 0.38, isMain: false },
+        { name: 'Nordik', x: 0.46, y: 0.20, isMain: false },
+        { name: 'Balkan', x: 0.52, y: 0.48, isMain: false },
+        { name: 'Timur Tengah', x: 0.64, y: 0.58, isMain: false }
     ];
 
     let pulseRadius = 0;
@@ -381,7 +532,6 @@
         const jx = jakarta.x * w;
         const jy = jakarta.y * h;
 
-        // 绘制以雅加达为中心向全球各节点发散的科技感连线
         locations.forEach((loc, index) => {
             if (index === 0) return;
             const lx = loc.x * w;
@@ -398,45 +548,37 @@
             ctx.setLineDash([]);
         });
 
-        // 动画递增
         pulseRadius = (pulseRadius + 0.35) % 20;
         mainPulseRadius = (mainPulseRadius + 0.6) % 35;
 
-        // 绘制普通节点 (英、法、德、北欧、巴尔干、中东)
         locations.forEach((loc, index) => {
-            if (index === 0) return; // 雅加达单独处理
+            if (index === 0) return;
             const cx = loc.x * w;
             const cy = loc.y * h;
 
-            // 扩散波纹
             ctx.beginPath();
             ctx.arc(cx, cy, pulseRadius, 0, Math.PI * 2);
             ctx.strokeStyle = `rgba(244, 63, 94, ${1 - pulseRadius / 20})`;
             ctx.lineWidth = 0.8;
             ctx.stroke();
 
-            // 中心点
             ctx.beginPath();
             ctx.arc(cx, cy, 3, 0, Math.PI * 2);
             ctx.fillStyle = '#f43f5e';
             ctx.fill();
 
-            // 文字标注
             ctx.fillStyle = '#9ca3af';
             ctx.font = '9px sans-serif';
             ctx.textAlign = 'center';
             ctx.fillText(loc.name, cx, cy - 8);
         });
 
-        // 重点突出：印尼雅加达 (放大双重波纹 + 金色高亮 + 醒目标注)
-        // 第一道波纹
         ctx.beginPath();
         ctx.arc(jx, jy, mainPulseRadius, 0, Math.PI * 2);
         ctx.strokeStyle = `rgba(251, 191, 36, ${1 - mainPulseRadius / 35})`;
         ctx.lineWidth = 1.5;
         ctx.stroke();
 
-        // 第二道波纹 (错峰)
         let secondRadius = (mainPulseRadius + 15) % 35;
         ctx.beginPath();
         ctx.arc(jx, jy, secondRadius, 0, Math.PI * 2);
@@ -444,16 +586,14 @@
         ctx.lineWidth = 1;
         ctx.stroke();
 
-        // 雅加达中心实体大圆
         ctx.beginPath();
         ctx.arc(jx, jy, 6, 0, Math.PI * 2);
         ctx.fillStyle = '#fbbf24';
         ctx.shadowColor = '#fbbf24';
         ctx.shadowBlur = 15;
         ctx.fill();
-        ctx.shadowBlur = 0; // 重置
+        ctx.shadowBlur = 0;
 
-        // 雅加达文字
         ctx.fillStyle = '#fde68a';
         ctx.font = 'bold 11px sans-serif';
         ctx.textAlign = 'center';
