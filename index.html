@@ -11,7 +11,6 @@
         /* 1. 顶部导航栏 */
         .top-nav { display: flex; justify-content: space-between; align-items: center; margin-bottom: 25px; padding-top: 10px; }
         .brand-group { display: flex; align-items: center; gap: 10px; }
-        .logo-img { height: 24px; object-fit: contain; }
         .brand-text { font-weight: bold; font-size: 15px; letter-spacing: 0.5px; color: #fff; }
         
         .nav-right { display: flex; align-items: center; gap: 8px; }
@@ -47,13 +46,10 @@
         .stat-number { font-size: 18px; font-weight: bold; color: #fff; margin-bottom: 4px; }
         .stat-label { font-size: 11px; color: #888; }
 
-        /* 5. 岗位卡片区 (默认折叠表单) */
+        /* 5. 岗位卡片区 */
         .section-subtitle { font-size: 11px; color: #777; letter-spacing: 1px; margin-bottom: 15px; font-weight: bold; }
         .job-card { background: #150c1c; border: 1px solid #271a33; border-radius: 16px; padding: 22px; margin-bottom: 20px; position: relative; overflow: hidden; box-shadow: 0 8px 24px rgba(0,0,0,0.4); transition: 0.3s; }
         
-        /* 卡片右下角水印 */
-        .job-card::after { content: ""; position: absolute; right: -10px; bottom: -15px; width: 110px; height: 110px; background-image: url('logo.png'); background-repeat: no-repeat; background-size: contain; opacity: 0.08; pointer-events: none; }
-
         .job-header-row { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 8px; cursor: pointer; }
         .job-title-area { flex: 1; }
         .job-title { font-size: 18px; font-weight: bold; color: #fff; }
@@ -68,7 +64,6 @@
         .tags { display: flex; gap: 6px; margin-bottom: 0px; flex-wrap: wrap; }
         .tag { background: #22152d; color: #d1d5db; padding: 3px 8px; border-radius: 6px; font-size: 11px; border: 1px solid #322142; }
         
-        /* 折叠的表单区域 */
         .job-form-collapse { max-height: 0; overflow: hidden; transition: max-height 0.4s ease-out, margin-top 0.4s ease-out; margin-top: 0; border-top: 0px solid #271a33; }
         .job-card.expanded .job-form-collapse { max-height: 500px; margin-top: 15px; padding-top: 15px; border-top: 1px solid #271a33; }
 
@@ -81,7 +76,7 @@
         .submit-btn { width: 100%; background: linear-gradient(135deg, #f43f5e, #e11d48); color: white; border: none; border-radius: 10px; padding: 14px; font-size: 15px; font-weight: bold; cursor: pointer; margin-top: 5px; transition: 0.2s; box-shadow: 0 4px 12px rgba(225,29,72,0.3); position: relative; z-index: 1; }
         .submit-btn:hover { opacity: 0.9; transform: translateY(-1px); }
 
-        /* 6. 图片复刻区：PROSESNYA 流程区块 */
+        /* 6. 流程区块 */
         .process-section { background: #150c1c; border: 1px solid #271a33; border-radius: 16px; padding: 20px; margin-top: 30px; margin-bottom: 30px; box-shadow: 0 8px 24px rgba(0,0,0,0.4); }
         .process-title-header { font-size: 11px; color: #777; letter-spacing: 1px; font-weight: bold; margin-bottom: 15px; }
         
@@ -94,7 +89,7 @@
         .step-badge { background: #e11d48; color: #fff; font-size: 9px; padding: 1px 6px; border-radius: 4px; font-weight: bold; }
         .step-desc { font-size: 12px; color: #9ca3af; line-height: 1.4; }
 
-        /* 底部公司信息与社交卡片 */
+        /* 底部信息 */
         .brand-footer-box { background: #110816; border: 1px solid #22152e; border-radius: 14px; padding: 16px; margin-top: 20px; text-align: center; }
         .brand-footer-name { font-size: 14px; font-weight: bold; color: #fff; margin-bottom: 8px; letter-spacing: 0.5px; }
         .footer-info-row { display: flex; justify-content: center; gap: 15px; font-size: 11px; color: #888; flex-wrap: wrap; margin-bottom: 10px; }
@@ -110,7 +105,6 @@
     <!-- 顶部导航栏 -->
     <div class="top-nav">
         <div class="brand-group">
-            <img src="logo.png" alt="Logo" class="logo-img" onerror="this.style.display='none'">
             <span class="brand-text">MUKE MEDIA</span>
         </div>
         <div class="nav-right">
@@ -130,7 +124,7 @@
         <p class="hero-desc">MUKE adalah agensi live streaming TikTok di Jakarta. Kami cari orang yang mau serius — bukan cuma coba-coba. Lamaran online, gratis, tanpa biaya apa pun.</p>
     </div>
 
-    <!-- 全球足迹动态点亮地图卡片 (印尼语: Jejak Global MUKE) -->
+    <!-- 全球足迹动态点亮地图卡片 -->
     <div class="map-card">
         <div class="map-card-title">Jejak Global MUKE</div>
         <div class="map-card-subtitle">Global Network & Strategic Hubs</div>
@@ -166,9 +160,7 @@
 
     <div class="section-subtitle">LOWONGAN PEKERJAAN</div>
 
-    <!-- 岗位列表区域 (点击卡片头部展开/折叠表单) -->
-
-    <!-- 1. Host Live -->
+    <!-- 岗位 1: Host Live -->
     <div class="job-card" id="job-1">
         <div class="job-header-row" onclick="toggleJob('job-1')">
             <div class="job-title-area">
@@ -184,8 +176,6 @@
                 <div class="next-btn-badge" id="btn-text-job-1">Lamar ▼</div>
             </div>
         </div>
-        
-        <!-- 折叠表单 -->
         <div class="job-form-collapse">
             <form onsubmit="handleSubmit(event, 'Host Live')">
                 <div class="form-group">
@@ -203,208 +193,9 @@
         </div>
     </div>
 
-    <!-- 2. Penerjemah -->
-    <div class="job-card" id="job-2">
-        <div class="job-header-row" onclick="toggleJob('job-2')">
-            <div class="job-title-area">
-                <div class="job-title">Penerjemah <span class="job-title-sub">翻译</span> <span class="badge-urgent">URGENT</span></div>
-                <div class="job-desc" style="margin-top: 6px; margin-bottom: 8px;">Penerjemahan Mandarin/Indonesia/Inggris, subtitle siaran, dan dukungan komunikasi lintas bahasa.</div>
-                <div class="tags">
-                    <span class="tag">butuh 2 orang</span>
-                    <span class="tag">P 专业技术轨</span>
-                    <span class="tag">Asisten → Senior · 3 tingkat</span>
-                </div>
-            </div>
-            <div class="job-card-right">
-                <div class="next-btn-badge" id="btn-text-job-2">Lamar ▼</div>
-            </div>
-        </div>
-        
-        <div class="job-form-collapse">
-            <form onsubmit="handleSubmit(event, 'Penerjemah')">
-                <div class="form-group">
-                    <label>Nama lengkap</label>
-                    <input type="text" class="input-box" placeholder="contoh: Siti Rahayu">
-                    <div class="input-hint">Tulis persis seperti di KTP. Dipakai untuk kontrak kerja.</div>
-                </div>
-                <div class="form-group">
-                    <label>Nomor WhatsApp</label>
-                    <input type="tel" class="input-box" placeholder="contoh: 08123456789">
-                    <div class="input-hint">Harus nomor milikmu sendiri — jadi satu-satunya identitas kamu setelah masuk kerja.</div>
-                </div>
-                <button type="submit" class="submit-btn">Kirim Lamaran</button>
-            </form>
-        </div>
-    </div>
-
-    <!-- 3. Pelatih Tari -->
-    <div class="job-card" id="job-3">
-        <div class="job-header-row" onclick="toggleJob('job-3')">
-            <div class="job-title-area">
-                <div class="job-title">Pelatih Tari <span class="job-title-sub">舞蹈培训师</span></div>
-                <div class="job-desc" style="margin-top: 6px; margin-bottom: 8px;">Merancang dan mengajar kelas tari untuk host pemula, serta melakukan penilaian berjenjang.</div>
-                <div class="tags">
-                    <span class="tag">butuh 5 orang</span>
-                    <span class="tag">Spesialis → Pakar · 3 tingkat</span>
-                </div>
-            </div>
-            <div class="job-card-right">
-                <div class="next-btn-badge" id="btn-text-job-3">Lamar ▼</div>
-            </div>
-        </div>
-        
-        <div class="job-form-collapse">
-            <form onsubmit="handleSubmit(event, 'Pelatih Tari')">
-                <div class="form-group">
-                    <label>Nama lengkap</label>
-                    <input type="text" class="input-box" placeholder="contoh: Siti Rahayu">
-                    <div class="input-hint">Tulis persis seperti di KTP. Dipakai untuk kontrak kerja.</div>
-                </div>
-                <div class="form-group">
-                    <label>Nomor WhatsApp</label>
-                    <input type="tel" class="input-box" placeholder="contoh: 08123456789">
-                    <div class="input-hint">Harus nomor milikmu sendiri — jadi satu-satunya identitas kamu setelah masuk kerja.</div>
-                </div>
-                <button type="submit" class="submit-btn">Kirim Lamaran</button>
-            </form>
-        </div>
-    </div>
-
-    <!-- 4. Penata Rias & Rambut -->
-    <div class="job-card" id="job-4">
-        <div class="job-header-row" onclick="toggleJob('job-4')">
-            <div class="job-title-area">
-                <div class="job-title">Penata Rias & Rambut <span class="job-title-sub">妆造</span></div>
-                <div class="job-desc" style="margin-top: 6px; margin-bottom: 8px;">Merancang tata rias dan gaya penampilan host, retouch selama siaran, serta mengelola stok kosmetik.</div>
-                <div class="tags">
-                    <span class="tag">butuh 6 orang</span>
-                    <span class="tag">Asisten → Pakar · 4 tingkat</span>
-                </div>
-            </div>
-            <div class="job-card-right">
-                <div class="next-btn-badge" id="btn-text-job-4">Lamar ▼</div>
-            </div>
-        </div>
-        
-        <div class="job-form-collapse">
-            <form onsubmit="handleSubmit(event, 'Penata Rias & Rambut')">
-                <div class="form-group">
-                    <label>Nama lengkap</label>
-                    <input type="text" class="input-box" placeholder="contoh: Siti Rahayu">
-                    <div class="input-hint">Tulis persis seperti di KTP. Dipakai untuk kontrak kerja.</div>
-                </div>
-                <div class="form-group">
-                    <label>Nomor WhatsApp</label>
-                    <input type="tel" class="input-box" placeholder="contoh: 08123456789">
-                    <div class="input-hint">Harus nomor milikmu sendiri — jadi satu-satunya identitas kamu setelah masuk kerja.</div>
-                </div>
-                <button type="submit" class="submit-btn">Kirim Lamaran</button>
-            </form>
-        </div>
-    </div>
-
-    <!-- 5. Operasional Live -->
-    <div class="job-card" id="job-5">
-        <div class="job-header-row" onclick="toggleJob('job-5')">
-            <div class="job-title-area">
-                <div class="job-title">Operasional Live <span class="job-title-sub">团播运营</span></div>
-                <div class="job-desc" style="margin-top: 6px; margin-bottom: 8px;">Menyusun jadwal konten studio, evaluasi data, memantau kondisi host, serta merencanakan dan menjalankan event.</div>
-                <div class="tags">
-                    <span class="tag">butuh 2 orang</span>
-                </div>
-            </div>
-            <div class="job-card-right">
-                <div class="next-btn-badge" id="btn-text-job-5">Lamar ▼</div>
-            </div>
-        </div>
-        
-        <div class="job-form-collapse">
-            <form onsubmit="handleSubmit(event, 'Operasional Live')">
-                <div class="form-group">
-                    <label>Nama lengkap</label>
-                    <input type="text" class="input-box" placeholder="contoh: Siti Rahayu">
-                    <div class="input-hint">Tulis persis seperti di KTP. Dipakai untuk kontrak kerja.</div>
-                </div>
-                <div class="form-group">
-                    <label>Nomor WhatsApp</label>
-                    <input type="tel" class="input-box" placeholder="contoh: 08123456789">
-                    <div class="input-hint">Harus nomor milikmu sendiri — jadi satu-satunya identitas kamu setelah masuk kerja.</div>
-                </div>
-                <button type="submit" class="submit-btn">Kirim Lamaran</button>
-            </form>
-        </div>
-    </div>
-
-    <!-- 6. MC Live -->
-    <div class="job-card" id="job-6">
-        <div class="job-header-row" onclick="toggleJob('job-6')">
-            <div class="job-title-area">
-                <div class="job-title">MC Live <span class="job-title-sub">主持</span> <span class="badge-urgent">URGENT</span></div>
-                <div class="job-desc" style="margin-top: 6px; margin-bottom: 8px;">Mengatur tempo acara, memandu interaksi dan suasana pemberian gift, serta menyambungkan antar segmen.</div>
-                <div class="tags">
-                    <span class="tag">butuh 5 orang</span>
-                    <span class="tag">Pemula → Emas · 4 tingkat</span>
-                </div>
-            </div>
-            <div class="job-card-right">
-                <div class="next-btn-badge" id="btn-text-job-6">Lamar ▼</div>
-            </div>
-        </div>
-        
-        <div class="job-form-collapse">
-            <form onsubmit="handleSubmit(event, 'MC Live')">
-                <div class="form-group">
-                    <label>Nama lengkap</label>
-                    <input type="text" class="input-box" placeholder="contoh: Siti Rahayu">
-                    <div class="input-hint">Tulis persis seperti di KTP. Dipakai untuk kontrak kerja.</div>
-                </div>
-                <div class="form-group">
-                    <label>Nomor WhatsApp</label>
-                    <input type="tel" class="input-box" placeholder="contoh: 08123456789">
-                    <div class="input-hint">Harus nomor milikmu sendiri — jadi satu-satunya identitas kamu setelah masuk kerja.</div>
-                </div>
-                <button type="submit" class="submit-btn">Kirim Lamaran</button>
-            </form>
-        </div>
-    </div>
-
-    <!-- 7. Kameramen & Switcher -->
-    <div class="job-card" id="job-7">
-        <div class="job-header-row" onclick="toggleJob('job-7')">
-            <div class="job-title-area">
-                <div class="job-title">Kameramen & Switcher <span class="job-title-sub">运镜</span></div>
-                <div class="job-desc" style="margin-top: 6px; margin-bottom: 8px;">Mengatur posisi dan gerak kamera, menyusun komposisi gambar, serta berkoordinasi dengan operator untuk perpindahan shot.</div>
-                <div class="tags">
-                    <span class="tag">butuh 2 orang</span>
-                    <span class="tag">Asisten → Pakar · 4 tingkat</span>
-                </div>
-            </div>
-            <div class="job-card-right">
-                <div class="next-btn-badge" id="btn-text-job-7">Lamar ▼</div>
-            </div>
-        </div>
-        
-        <div class="job-form-collapse">
-            <form onsubmit="handleSubmit(event, 'Kameramen & Switcher')">
-                <div class="form-group">
-                    <label>Nama lengkap</label>
-                    <input type="text" class="input-box" placeholder="contoh: Siti Rahayu">
-                    <div class="input-hint">Tulis persis seperti di KTP. Dipakai untuk kontrak kerja.</div>
-                </div>
-                <div class="form-group">
-                    <label>Nomor WhatsApp</label>
-                    <input type="tel" class="input-box" placeholder="contoh: 08123456789">
-                    <div class="input-hint">Harus nomor milikmu sendiri — jadi satu-satunya identitas kamu setelah masuk kerja.</div>
-                </div>
-                <button type="submit" class="submit-btn">Kirim Lamaran</button>
-            </form>
-        </div>
-    </div>
-
-    <!-- 复刻图片内容：PROSESNYA 区块 -->
+    <!-- 流程区块 -->
     <div class="process-section">
         <div class="process-title-header">PROSESNYA</div>
-        
         <div class="process-step">
             <div class="step-num">1</div>
             <div class="step-content">
@@ -415,7 +206,6 @@
                 <div class="step-desc">Tiga form: lamaran → kuesioner → tes tulis.</div>
             </div>
         </div>
-
         <div class="process-step">
             <div class="step-num">2</div>
             <div class="step-content">
@@ -425,7 +215,6 @@
                 <div class="step-desc">Kami hubungi lewat WhatsApp untuk atur jadwal.</div>
             </div>
         </div>
-
         <div class="process-step">
             <div class="step-num">3</div>
             <div class="step-content">
@@ -437,7 +226,7 @@
         </div>
     </div>
 
-    <!-- 底部品牌信息与社交矩阵区块 -->
+    <!-- 底部信息 -->
     <div class="brand-footer-box">
         <div class="brand-footer-name">MUKE STAR</div>
         <div class="footer-info-row">
@@ -453,7 +242,6 @@
     <div class="global-footer-note">
         Data diperbarui 2026-09-24 &nbsp; | &nbsp; © PT MUKE · MUKE MEDIA Indonesia
     </div>
-
 </div>
 
 <script>
@@ -473,7 +261,6 @@
         const btn = document.getElementById('btn-text-' + jobId);
         const isExpanded = card.classList.contains('expanded');
         
-        // 关闭其他所有卡片 (手风琴效果，可选。如果希望多个同时展开，可注释掉下面这几行)
         document.querySelectorAll('.job-card').forEach(c => {
             if(c.id !== jobId) {
                 c.classList.remove('expanded');
@@ -498,13 +285,14 @@
         alert("Pendaftaran untuk posisi [" + jobTitle + "] berhasil dikirim!\nDirekomendasikan oleh: " + currentAgent + "\nTerima kasih, kami akan segera menghubungi Anda.");
     }
 
-    // 4. 全球多节点动态地图 Canvas 脚本 (雅加达放大核心 + 欧洲/英国/中东/北欧/巴尔干)
+    // 4. 地图 Canvas 脚本（加入防宽高为 0 保护）
     const canvas = document.getElementById('globalMapCanvas');
     const ctx = canvas.getContext('2d');
 
     function resizeCanvas() {
-        canvas.width = canvas.parentElement.clientWidth;
-        canvas.height = canvas.parentElement.clientHeight;
+        const parent = canvas.parentElement;
+        canvas.width = parent.clientWidth || 300;
+        canvas.height = parent.clientHeight || 180;
     }
     window.addEventListener('resize', resizeCanvas);
     resizeCanvas();
